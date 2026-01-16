@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Para ti 💙</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+       body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        180deg,
+        #99b5f9 0%,
+        #c8b1ff 100%
+    );
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+
+        .widget {
+    width: 100%;
+    max-width: 320px;
+    padding: 26px;
+    background: linear-gradient(
+    180deg,
+    #e03fc8 0%,
+    #ffabf0 100%
+);
+
+    border-radius: 20px;
+    text-align: center;
+
+    border: 1px solid rgba(140, 120, 255, 0.28);
+
+    box-shadow:
+        0 16px 45px rgba(120, 140, 255, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+    animation: appear 1s ease forwards;
+}
+
+@keyframes appear {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+        .date {
+    font-size: 0.75rem;
+    opacity: 0.55;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+}
+
+
+        .message {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: #222;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: textIn 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+@keyframes textIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="widget">
+        <div class="date" id="date">Cargando...</div>
+        <div class="message" id="message">Cargando mensaje...</div>
+    </div>
+
+    <script>
+        fetch("https://hr-backend-iy9z.onrender.com/api/message")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("message").textContent = data.text;
+                document.getElementById("date").textContent = data.updated_at;
+            })
+            .catch(err => {
+                document.getElementById("message").textContent =
+                    "No se pudo cargar el mensaje 💔";
+            });
+    </script>
+
+</body>
+</html>
