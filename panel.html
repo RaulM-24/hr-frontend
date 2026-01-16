@@ -151,7 +151,7 @@ btn.addEventListener("click", async () => {
         return;
     }
 
-    const res = await fetch("http://hr-backend-iy9z.onrender.com/api/message", {
+    const res = await fetch("https://hr-backend-iy9z.onrender.com/api/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text })
@@ -167,7 +167,7 @@ btn.addEventListener("click", async () => {
 });
 
 function loadMessage() {
-    fetch("http://hr-backend-iy9z.onrender.com/api/message")
+    fetch("https://hr-backend-iy9z.onrender.com/api/message")
         .then(res => res.json())
         .then(data => {
             document.getElementById("currentText").textContent = data.text;
