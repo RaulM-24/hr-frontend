@@ -1,0 +1,626 @@
+/* =====================
+   RESET BÁSICO
+===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #fdf6f8;
+    color: #2b2b2b;
+}
+
+
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#hero h1 {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    animation: fadeUp 1s ease forwards;
+}
+
+
+
+
+#hero .date {
+    margin-top: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.photo-slider {
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.8s;
+}
+
+#btn-hr {
+    background: linear-gradient(135deg, #d94b4b, #b22e2e);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 36px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    box-shadow: 0 10px 25px rgba(178, 46, 46, 0.3);
+}
+
+
+
+
+/* =====================
+   HERO
+===================== */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+        180deg,
+        #a9f5b3 0%,
+        #ffffff 65%,
+        #a9f5b3 85%
+    );
+}
+
+
+.hero-content {
+    text-align: center;
+    padding: 40px 24px;
+}
+
+
+
+.hero {
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* Título principal */
+.hero h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+#section-line h2 {
+     font-size: 3rem;
+    letter-spacing: 4px;
+    animation: fadeUp 1s ease forwards;
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+/* Frase */
+.hero p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 320px;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+/* Botón HR */
+.hero button {
+    padding: 0.9rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+
+    border: none;
+    border-radius: 30px;
+
+    background-color: #e94b6a;
+    color: white;
+
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* Efecto al tocar */
+.hero button:active {
+    transform: scale(0.95);
+}
+
+/* Hover (se verá más en compu) */
+.hero button:hover {
+    box-shadow: 0 8px 20px rgba(233, 75, 106, 0.35);
+}
+
+.photo-slider {
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 320px;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    will-change: transform;
+}
+
+
+.slide {
+    width: 140px;
+    height: 180px;
+    flex-shrink: 0;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    opacity: 0.5;
+    filter: blur(3px);
+    transform: scale(0.85);
+
+    transition: all 0.8s ease;
+}
+
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide {
+    opacity: 0.6;
+    filter: blur(3px);
+    transform: scale(0.85);
+}
+
+.slide.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1.05);
+}
+
+/* FOTO CENTRAL */
+.slide.active {
+    transform: scale(1.05);
+    z-index: 3;
+    filter: blur(0);
+    opacity: 1;
+}
+
+/* LADOS */
+.slide.left,
+.slide.right {
+    transform: scale(0.85);
+    filter: blur(3px);
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.slide {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+/* ===================== */
+/* SECCIONES OCULTAS */
+/* ===================== */
+
+.hidden-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+
+
+/* ===================== */
+/* SECCION VISIBLE */
+/* ===================== */
+
+.show-section {
+    display: block;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-surprise {
+    margin-top: 40px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Compensa el 50% del ancho del botón */
+}
+
+
+/* ===============================
+   SECCIÓN 2 – TIMELINE / HISTORIA
+   =============================== */
+
+#section-line {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #6681ed 40%,
+        #f0f4ff 100%
+    );
+    padding: 80px 0;
+}
+
+#section-line {
+    margin-top: -1px;
+}
+
+
+/* CONTENEDOR GENERAL */
+.timeline {
+    position: relative;
+    margin: 40px auto;
+    padding: 20px 0;
+    width: 100%;
+    max-width: 420px; /* full mobile */
+}
+
+/* LÍNEA VERTICAL CENTRAL */
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: #ddd;
+    transform: translateX(-50%);
+}
+
+/* ===============================
+   TARJETAS RECTANGULARES
+   =============================== */
+
+.timeline-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.timeline-item .cover {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        180deg,
+        #efe7fb 0%,
+        #e6d9f7 100%
+    );
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+
+    color: #7a5fb0;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(190, 160, 255, 0.35),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+
+    transition: all 0.4s ease;
+}
+
+.timeline-item .cover:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 14px 40px rgba(190, 160, 255, 0.45),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.timeline-item.revealed .cover {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.timeline-item.revealed .text {
+    color: #5a3f91;
+    filter: blur(0);
+}
+
+
+.timeline-item.uncovered .cover {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.timeline-item.covered .text {
+    color: rgba(140, 110, 200, 0.35);
+    filter: blur(2px);
+    transition: all 0.6s ease;
+}
+
+
+.timeline-item.uncovered .text {
+    color: rgba(0, 0, 0, 0.95);
+    filter: blur(0);
+}
+
+
+
+.timeline-item {
+    position: relative;
+    width: 55%;               /* MÁS ESTRECHO */
+    padding: 14px 16px;
+
+    background: #fff;
+    border-radius: 14px;      /* romántico */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+    /* Animación base */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+
+
+/* IZQUIERDA / DERECHA */
+.timeline-item.left {
+    margin-right: auto;
+}
+
+.timeline-item.right {
+    margin-left: auto;
+}
+
+/* ===============================
+   TEXTO INTERNO
+   =============================== */
+
+.timeline-item .time {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-bottom: 6px;
+}
+
+.timeline-item .text {
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+/* ===============================
+   ANIMACIÓN VISIBLE
+   =============================== */
+
+.timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item {
+    width: 50%;
+}
+
+/* ===============================
+   SECCIÓN 3 – WIDGET
+   =============================== */
+
+#section-widget {
+    background: linear-gradient(
+        180deg,
+        #f0f4ff 0%,
+        #ad0a02 50%,
+        #ffffff 100%
+    );
+    padding: 100px 20px;
+}
+
+#section-widget::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at top,
+        rgba(173, 190, 255, 0.15),
+        transparent 60%
+    );
+    pointer-events: none;
+}
+
+#section-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px; /* más aire entre explicación y widget */
+}
+
+.widget-preview {
+    margin-top: 10px;
+}
+
+
+
+/* MARCO DE EXPLICACIÓN */
+.widget-explain {
+    max-width: 420px;
+
+    background: linear-gradient(
+        180deg,
+        #f3f8ff 0%,
+        #ffffff 100%
+    );
+
+    padding: 34px 30px;
+    border-radius: 22px;
+    text-align: center;
+
+    border: 1px solid rgba(100, 160, 255, 0.25);
+
+    box-shadow:
+        0 16px 40px rgba(100, 160, 255, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.75);
+}
+
+
+.widget-explain h2 {
+    font-size: 1.45rem;
+    margin-bottom: 16px;
+    color: #2f2f2f;
+}
+
+.widget-explain p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #555;
+}
+
+.widget-explain:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+/* ===============================
+   WIDGET DEMO
+   =============================== */
+
+.widget-preview {
+    max-width: 320px;
+    background: linear-gradient(180deg, #ffffff, #fafafa);
+    padding: 22px 24px;
+    border-radius: 18px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    text-align: center;
+}
+
+
+.widget-time {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: #9a9a9a;
+}
+
+.widget-text {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-top: 12px;
+    color: #2f2f2f;
+    font-weight: 500;
+}
+
+
+
+/* ===============================
+   ANIMACIÓN SECCIÓN WIDGET
+   =============================== */
+
+#section-widget {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+#section-widget.show-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ANIMACIÓN TARJETA WIDGET */
+
+.widget-preview {
+    opacity: 0;
+    transform: translateY(25px) scale(0.98);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition-delay: 0.25s;
+}
+
+#section-widget.show-section .widget-preview {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+
+/* ===============================
+   SLIDER DE FRASES – WIDGET
+   =============================== */
+
+.widget-slider {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 140px;
+}
+
+.widget-card {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        180deg,
+        #fff7f9 0%,
+        #ffffff 100%
+    );
+
+    border-radius: 20px;
+    padding: 26px 26px;
+    text-align: center;
+
+    border: 1px solid rgba(255, 105, 135, 0.25);
+
+    box-shadow:
+        0 14px 40px rgba(255, 105, 135, 0.12),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+
+/* TARJETA ACTIVA */
+.widget-card.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    z-index: 2;
+    box-shadow:
+        0 18px 50px rgba(255, 105, 135, 0.18);
+}
