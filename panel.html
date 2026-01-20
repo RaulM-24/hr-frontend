@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel HR</title>
+
+<style>
+/* ===============================
+   RESET BÁSICO
+   =============================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f5f7fb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+/* ===============================
+   CONTENEDOR PRINCIPAL
+   =============================== */
+.panel {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px 18px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* ===============================
+   TÍTULO
+   =============================== */
+.panel h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+/* ===============================
+   MENSAJE ACTIVO
+   =============================== */
+.current-message {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 18px;
+
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 8px;
+}
+
+.current-text {
+    font-size: 1.05rem;
+    line-height: 1.45;
+    margin-bottom: 6px;
+}
+
+.current-date {
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+/* ===============================
+   INPUT
+   =============================== */
+textarea {
+    width: 100%;
+    resize: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 1rem;
+
+    border: 1px solid rgba(0,0,0,0.1);
+    outline: none;
+}
+
+/* ===============================
+   BOTÓN
+   =============================== */
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+
+    background: linear-gradient(180deg, #7f8cff, #5f6dff);
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+
+    box-shadow: 0 10px 25px rgba(95,109,255,0.35);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ===============================
+   STATUS
+   =============================== */
+#status {
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+    <h2>Panel HR</h2>
+
+    <div class="current-message">
+        <p class="label">Mensaje activo</p>
+        <p id="currentText" class="current-text">Cargando…</p>
+        <span id="currentDate" class="current-date"></span>
+    </div>
+
+    <textarea id="messageInput" rows="4"
+        placeholder="Escribe el mensaje que verá ella..."></textarea>
+
+    <button id="sendBtn">Actualizar mensaje</button>
+
+    <p id="status"></p>
+</div>
+
+<script>
+const btn = document.getElementById("sendBtn");
+const input = document.getElementById("messageInput");
+const status = document.getElementById("status");
+
+btn.addEventListener("click", async () => {
+    const text = input.value.trim();
+    if (!text) {
+        status.textContent = "Escribe algo primero 😅";
+        return;
+    }
+
+    const res = await fetch("https://hr-backend-iy9z.onrender.com/api/message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text })
+    });
+
+    if (res.ok) {
+        status.textContent = "Mensaje actualizado ❤️";
+        input.value = "";
+        loadMessage();
+    } else {
+        status.textContent = "Error al actualizar 😢";
+    }
+});
+
+function loadMessage() {
+    fetch("https://hr-backend-iy9z.onrender.com/api/message")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("currentText").textContent = data.text;
+            document.getElementById("currentDate").textContent =
+                "Última actualización: " + data.updated_at;
+        });
+}
+
+loadMessage();
+</script>
+
+</body>
+</html>
